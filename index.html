@@ -3,43 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
-        }
-    </style>
+    <title>Pizarra Colaborativa</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Bienvenido a Mi Página Web</h1>
-        <p>Esta es una página web simple creada con HTML y CSS básico. Aquí puedes agregar todo el contenido que desees.</p>
-        <p>Algunos elementos que podrías agregar:</p>
-        <ul>
-            <li>Imágenes</li>
-            <li>Enlaces</li>
-            <li>Formularios</li>
-            <li>Videos</li>
-        </ul>
+        <div class="tools">
+            <div class="color-picker">
+                <input type="color" id="color-picker" value="#000000">
+                <span>Color</span>
+            </div>
+            <div class="brush-size">
+                <input type="range" id="brush-size" min="1" max="50" value="5">
+                <span>Tamaño del pincel</span>
+            </div>
+            <div class="eraser">
+                <button id="eraser">Borrador</button>
+                <input type="range" id="eraser-size" min="1" max="50" value="10">
+                <span>Tamaño del borrador</span>
+            </div>
+            <div class="text-tool">
+                <button id="text-tool">Añadir Texto</button>
+                <input type="range" id="text-size" min="10" max="72" value="20">
+                <span>Tamaño del texto</span>
+            </div>
+            <div class="clear">
+                <button id="clear">Limpiar Todo</button>
+            </div>
+        </div>
+        <div class="canvas-container">
+            <canvas id="drawing-board"></canvas>
+        </div>
     </div>
+    <!-- Firebase SDK -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+      import { getDatabase, ref, set, onValue, push, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+      
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDFOS6A1Vax6kj_1rIUigaPy9a3OItcEb8",
+        authDomain: "chatglobal-and-juegos.firebaseapp.com",
+        databaseURL: "https://chatglobal-and-juegos-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "chatglobal-and-juegos",
+        storageBucket: "chatglobal-and-juegos.firebasestorage.app",
+        messagingSenderId: "33316741269",
+        appId: "1:33316741269:web:6c1f292fd369d74a6afb9c",
+        measurementId: "G-2RSSDJ9DK5"
+      };
+      
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const database = getDatabase(app);
+      
+      // Exponer Firebase al ámbito global para que script.js pueda acceder
+      window.firebaseApp = app;
+      window.firebaseDatabase = database;
+      window.firebaseRefs = { ref, set, onValue, push, remove };
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
