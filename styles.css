@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.tools > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.tools span {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 100px;
+}
+
+.canvas-container {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+    background-color: #f0f0f0;
+    cursor: crosshair;
+}
+
+#drawing-board {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-input {
+    position: absolute;
+    background: transparent;
+    border: 1px dashed #000;
+    font-family: Arial, sans-serif;
+    padding: 5px;
+    outline: none;
+    z-index: 100;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .tools {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 10px;
+    }
+    
+    .tools > div {
+        margin-right: 10px;
+        min-width: 70px;
+    }
+    
+    button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    input[type="range"] {
+        width: 70px;
+    }
+}
